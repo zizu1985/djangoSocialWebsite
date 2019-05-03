@@ -1,0 +1,12 @@
+TODO:
+    1.
+
+
+PROBLEMS:
+    1. Build-in Django authorization view django.contrib.auth.views.logout_then_login
+        przekierowuje do accounts/login zamiast do account/login
+
+        SOL: dodanie do settingsow LOGIN_URL
+
+    2. After successfull login przekierowuje do /accounts/profile
+    3. Nowy uzytkownik tylko po approvalu mailowym
