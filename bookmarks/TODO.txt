@@ -1,5 +1,5 @@
 TODO:
-    1.
+    1. Send email to all administrator for new user creation approval and sql command approval
 
 
 PROBLEMS:
@@ -10,3 +10,7 @@ PROBLEMS:
 
     2. After successfull login przekierowuje do /accounts/profile
     3. Nowy uzytkownik tylko po approvalu mailowym
+
+NOTES:
+    1. Migracje dzislaja jak transakcje. Mozna je wycofywać (migrate --fake <migration_name | zero> i potem migrate <migration_name>
+    2.

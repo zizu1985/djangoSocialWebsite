@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}SQL command request{% endblock %}
+
+{% block content %}
+
+<h1>Enter SQL Command</h1>
+<form action="." method="post">
+    {{ sqlcommand_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Request SQL Command"></p>
+</form>
+
+{% endblock %}
