@@ -26,3 +26,7 @@ class Image(models.Model):
 
     def get_absolute_url(self):
         return reverse('image:detail', args=[self.id, self.slug])
+
+    @property
+    def get_absolute_image_url(self):
+        return "http://127.0.0.1:8000/{0}".format(self.image.url)

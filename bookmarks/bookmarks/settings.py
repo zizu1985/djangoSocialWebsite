@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'images',
+    'sorl.thumbnail',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -116,3 +117,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 # For storing csv
 CSV_ROOT = os.path.join(BASE_DIR,'csv/')
+
+# Thumbnail debug
+#THUMBNAIL_DEBUG=True

@@ -1,18 +1,30 @@
-TODO:
+####################
+  TODO
+####################
     1. Send email to all administrator for new user creation approval and sql command approval
+    2. In absolute url for image in model avoid hardcoded website path. Replace using Serializable method.
 
-
-PROBLEMS:
-    1. Build-in Django authorization view django.contrib.auth.views.logout_then_login
+####################
+  PROBLEMS
+####################
+    [DONE] 1. Build-in Django authorization view django.contrib.auth.views.logout_then_login
         przekierowuje do accounts/login zamiast do account/login
 
         SOL: dodanie do settingsow LOGIN_URL
 
     2. After successfull login przekierowuje do /accounts/profile
-    3. Nowy uzytkownik tylko po approvalu mailowym
+    [DONE] 3. Nowy uzytkownik tylko po approvalu mailowym
+    4. Cannot display thumbnail
 
-NOTES:
+        OSError
+        decoder jpeg not available
+
+####################
+  NOTES
+####################
     1. Migracje dzislaja jak transakcje. Mozna je wycofywać (migrate --fake <migration_name | zero> i potem migrate <migration_name>
     2. Bookmarklet - aplikacja (JavaScript) która operuje na stronie na ktorej aktualnie sie znajduje.
         Jestem na stronie, wyciagam obrazki. Prezentuje je, wybieram ktory chcemy pobrac i voila!
     3. W ORM można kluczom nadawać etykiety. Dzięki temu od razu możemy dostać dane po joinie.
+    4. ImageFiled w modelu nie zwraca absolutnego url. Trzeba dodać nazwę domeny.
+
