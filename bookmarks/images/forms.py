@@ -28,7 +28,7 @@ class ImageCreateForm(forms.ModelForm):
                 'url': forms.HiddenInput,
             }
 
-
+    '''
     # Validation for url field
     def clean_url(self):
         url = self.cleaned_data['url']
@@ -37,4 +37,4 @@ class ImageCreateForm(forms.ModelForm):
         if extension not in valid_extensions:
             raise forms.ValidationError('The given URL does not match valid image extensions.')
         return url
-
+    '''

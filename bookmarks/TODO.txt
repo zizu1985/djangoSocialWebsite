@@ -13,4 +13,6 @@ PROBLEMS:
 
 NOTES:
     1. Migracje dzislaja jak transakcje. Mozna je wycofywać (migrate --fake <migration_name | zero> i potem migrate <migration_name>
-    2.
+    2. Bookmarklet - aplikacja (JavaScript) która operuje na stronie na ktorej aktualnie sie znajduje.
+        Jestem na stronie, wyciagam obrazki. Prezentuje je, wybieram ktory chcemy pobrac i voila!
+    3. W ORM można kluczom nadawać etykiety. Dzięki temu od razu możemy dostać dane po joinie.
