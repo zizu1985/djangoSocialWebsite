@@ -12,6 +12,10 @@ class Profile(models.Model):
     def __str__(self):
         return 'Profile for user {}'.format(self.user.username)
 
+    @property
+    def get_absolute_image_url(self):
+        return "http://127.0.0.1:8000/{0}".format(self.photo.url)
+
 
 # SQL command
 class SQLCommand(models.Model):
