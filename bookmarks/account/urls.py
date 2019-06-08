@@ -8,6 +8,9 @@ from django.conf.urls.static import static
 # mozna od razu podac strone dla http://localhost:8000/account/login/?next=/account/logout
 urlpatterns = [
     # post views
+    url(r'^users/follow/$',views.user_follow, name='user_follow'),
+    url(r'^users/$', views.user_list, name='user_list'),
+    url(r'^users/(?P<username>[-\w]+)/$', views.user_detail, name='user_detail'),
     url(r'^sql_execute/(?P<sqlid>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/(?P<uid>[0-9A-Za-z_\-]+)$', views.sql_execute,name='sql_execute'),
     url(r'^sqlcommand/$', views.create_sqlcommand,name='sqlcommand'),
     url(r'^edit/$', views.edit,name='edit'),

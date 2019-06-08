@@ -1,10 +1,7 @@
-from _lsprof import profiler_entry
-
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegistrationForm
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -13,6 +10,8 @@ from django.core.mail import EmailMessage
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db import connection
+from django.shortcuts import get_object_or_404
+from django.views.decorators.http import require_POST
 
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm, SQLCommandForm
 from .token import account_activation_token
@@ -21,6 +20,8 @@ import datetime
 import os
 from .utils import store_as_csv
 from django.conf import settings
+from .models import Contact
+from .decorators import ajax_required
 
 # Form for authenticate user
 def user_login(request):
@@ -215,3 +216,43 @@ def sql_execute(request, sqlid, token, uid):
         return HttpResponse('SQL command succesfully generated and send to requestor.')
     else:
         return HttpResponse('Activation link for sql command is not valid!')
+
+
+@login_required
+def user_list(request):
+    users = User.objects.filter(is_active=True)
+    return render(request,'account/user/list.html',
+            {'section': 'people',
+             'users': users})
+
+
+@login_required
+def user_detail(request, username):
+    user = get_object_or_404(User,username=username,is_active=True)
+    return render(request,'account/user/detail.html',
+                  {'section': 'people',
+                   'user': user})
+
+# Build an AJAX view to follow users
+# Build following rule between Users using Contact class
+@ajax_required
+@require_POST
+@login_required
+def user_follow(request):
+    user_id = request.POST.get('id')
+    action = request.POST.get('action')
+    if user_id and action:
+        try:
+            user = User.objects.get(id=user_id)
+            if action == 'follow':
+                Contact.objects.get_or_create(
+                    user_from=request.user,
+                    user_to=user
+                )
+            else:
+                Contact.objects.filter(user_from=request.user,user_to=user).delete()
+            return JsonResponse({'status':'ok'})
+        except User.DoesNotExist:
+            return JsonResponse({'status':'ko'})
+    return JsonResponse({'status':'ko'})
+

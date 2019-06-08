@@ -18,6 +18,13 @@
 
         OSError
         decoder jpeg not available
+    [DONE] 5. Admin first name is not defined.
+        Problem with entry in table. Record in table updated.
+        6. user.get_absolute_url returns empty string.
+            For normal object we define property. Because user is not application model we have to defined other way.
+            We add setting in settings.py
+        7. Nie dziala znacznik thumbnail
+
 
 ####################
   NOTES

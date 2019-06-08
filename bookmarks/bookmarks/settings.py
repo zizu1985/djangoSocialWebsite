@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'images',
     'sorl.thumbnail',
+    'actions'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -113,10 +114,14 @@ EMAIL_HOST_USER = 'tziss85@gmail.com'
 
 # Media related settings
 MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
+MEDIA_ROOT = os.path.join(BASE_DIR,'`media/')
 
 # For storing csv
 CSV_ROOT = os.path.join(BASE_DIR,'csv/')
 
 # Thumbnail debug
 #THUMBNAIL_DEBUG=True
+
+# Add full URL retrievel for User class
+#ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: reverse_lazy('user_detail',arg=[u.username])}
+ABSOLUTE_URL_OVERRIDES = {'auth.user': lambda u: "/account/users/%s/" % u.username}
